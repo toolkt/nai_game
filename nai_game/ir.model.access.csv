@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_nai_game,user.nai.game,model_nai_game,base.group_user,1,1,1,1
+access_user_nai_game_results,user.nai.game.results,model_nai_game_results,base.group_user,1,1,1,1
+access_user_nai_game_answer,user.nai.game.answer,model_nai_game_answer,base.group_user,1,1,1,1
+access_user_nai_game_score,user.nai.game.score,model_nai_game_score,base.group_user,1,1,1,1

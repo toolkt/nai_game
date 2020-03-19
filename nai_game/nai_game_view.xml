@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        
+        <menuitem id="menu_nai_game_master" name="Game"/>
+
+
+
+        <record id="view_nai_game_search" model="ir.ui.view">
+            <field name="name">Game</field>
+            <field name="model">nai.game</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_nai_game_tree" model="ir.ui.view">
+            <field name="name">Game</field>
+            <field name="model">nai.game</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_nai_game_form" model="ir.ui.view">
+            <field name="name">Game</field>
+            <field name="model">nai.game</field>
+            <field name="arch" type="xml">
+                <form class="o_form_document">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="compute_totals"
+                                type="object"
+                                string="Compute Answers"
+                                class="oe_stat_button"
+                                icon="fa-refresh">
+                            </button>
+                            <button name="compute_score"
+                                type="object"
+                                string="Compute Scores"
+                                class="oe_stat_button"
+                                icon="fa-refresh">
+                            </button>
+                            <button name="download_results"
+                                type="object"
+                                string="Download Results"
+                                class="oe_stat_button"
+                                icon="fa-refresh">
+                            </button>
+
+
+                            
+                        </div>
+                        <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <field name="correctness_threshold"/>
+                            </group>
+                            <group>
+                                <field name="ws_labels" placeholder="File 1,File 2,ANSWERS"/>
+                                <field name="results"/>
+                            </group>
+
+                        </group>
+
+                        <notebook>
+                            <page string="Results Data">
+                                <field name='results_data'>
+                                    <tree editable='1'>
+                                        <field name="recipient"/>
+                                        <field name="sender"/>
+                                        <field name="timestamp"/>
+                                        <field name="timestamp2"/>
+                                        <field name="duration"/>
+                                        <field name="answer"/>
+                                        <field name="answer_similarity"/>
+                                        <field name="correct"/>
+                                        <field name="answered"/>
+                                        <field name="corona"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Answers">
+                                <field name='answers_data'>
+                                    <tree editable='1'>
+                                        <field name="sender"/>
+                                        <field name="answer"/>
+                                        <field name="corona"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Scores">
+                                <field name='scores_data'>
+                                    <tree editable='1'>
+                                        <field name="sender"/>
+                                        <field name="avg_time"/>
+                                        <field name="total_correct"/>
+                                        <field name="total_answered"/>
+                                        <field name="total_corona"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_nai_game" model="ir.actions.act_window">
+            <field name="name">Game</field>
+            <field name="res_model">nai.game</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <!-- <field name="context" eval="{'search_default_filter_active':1,'active_test':False}"/> -->
+        </record>
+
+        <menuitem id="menu_nai_game" action="action_nai_game" parent="menu_nai_game_master"/>
+</odoo>
